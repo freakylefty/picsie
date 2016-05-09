@@ -67,13 +67,11 @@ namespace Picsie.Players
             int frameDuration = defaultInterval;
             try
             {
-                /* 
-                 * Thanks to Orsol on Stack Overflow for pointing me to
-                 * http://www.koders.com/csharp/fid5840EBAB48061471148F53B65F814DE2F509DD54.aspx?s=ImageAnimator#L2
-                 * for the code to get the timings.
+                /*
+                 * Updated: now using per-frame delay rather than one-off calculation.
+                 * http://stackoverflow.com/a/14219338/376079
                  */
-                PropertyItem item = image.GetPropertyItem(0x5100);
-                frameDuration = (item.Value[0] + item.Value[1] * 256) * 10;
+                frameDuration = BitConverter.ToInt32(image.GetPropertyItem(20736).Value, (frame * 4)) * 10;
                 if (frameDuration == 0) {
                     frameDuration = defaultInterval;
                 }
