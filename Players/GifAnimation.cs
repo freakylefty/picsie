@@ -21,7 +21,7 @@ namespace Picsie.Players
         //Fields
         private double speedFactor = 1.0;
         private int frames = 0;
-        private int frame = 0;
+        private int frame = -1;
         private FrameDimension dimension;
         private Image image;
         private Form1 parent;
